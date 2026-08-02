@@ -60,6 +60,15 @@ export type PublicAppointment = {
   scheduledAt: string;
 };
 
+export type CalendarEvent = {
+  id: string;
+  appointmentId: number;
+  patientName: string;
+  title: string;
+  startsAt: string;
+  kind: "appointment" | "care_task" | "follow_up";
+};
+
 let schemaPromise: Promise<void> | undefined;
 
 function database() {
@@ -268,6 +277,52 @@ export async function getAppointmentRequests(): Promise<AppointmentRequest[]> {
       };
     }),
   );
+}
+
+export async function getAppointmentRequest(id: number) {
+  const patients = await getAppointmentRequests();
+  return patients.find((patient) => patient.id === id);
+}
+
+export async function getCalendarEvents(): Promise<CalendarEvent[]> {
+  const patients = await getAppointmentRequests();
+
+  return patients.flatMap((patient) => [
+    ...(patient.scheduledAt
+      ? [
+          {
+            id: `appointment-${patient.id}`,
+            appointmentId: patient.id,
+            patientName: patient.fullName,
+            title: "Randevu",
+            startsAt: patient.scheduledAt,
+            kind: "appointment" as const,
+          },
+        ]
+      : []),
+    ...patient.careTasks.flatMap((task) =>
+      task.dueDate
+        ? [
+            {
+              id: `task-${task.id}`,
+              appointmentId: patient.id,
+              patientName: patient.fullName,
+              title: task.title,
+              startsAt: `${task.dueDate}T09:00:00`,
+              kind: "care_task" as const,
+            },
+          ]
+        : [],
+    ),
+    ...patient.followUps.map((followUp) => ({
+      id: `follow-up-${followUp.id}`,
+      appointmentId: patient.id,
+      patientName: patient.fullName,
+      title: "Günlük takip",
+      startsAt: `${followUp.followUpDate}T10:00:00`,
+      kind: "follow_up" as const,
+    })),
+  ]);
 }
 
 export async function updatePatientRecord(

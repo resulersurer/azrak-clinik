@@ -1,7 +1,9 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
+import Link from "next/link";
 import type { AppointmentRequest, PatientStage } from "@/lib/appointments";
+import { ClinicCalendar } from "@/components/clinic-calendar";
 
 type PatientDraft = {
   patientStage: PatientStage;
@@ -63,6 +65,7 @@ export function AdminPanel() {
   const [paymentInputs, setPaymentInputs] = useState<Record<number, string>>({});
   const [careTaskInputs, setCareTaskInputs] = useState<Record<number, string>>({});
   const [followUpInputs, setFollowUpInputs] = useState<Record<number, string>>({});
+  const [searchQuery, setSearchQuery] = useState("");
 
   function applyPatients(records: AppointmentRequest[]) {
     setPatients(records);
@@ -218,6 +221,14 @@ export function AdminPanel() {
   );
   const totalAgreedCost = patients.reduce((total, patient) => total + patient.agreedCost, 0);
   const totalPaid = patients.reduce((total, patient) => total + patient.totalPaid, 0);
+  const normalizedQuery = searchQuery.trim().toLocaleLowerCase("tr-TR");
+  const filteredPatients = normalizedQuery
+    ? patients.filter((patient) =>
+        [patient.fullName, patient.phone, patient.email ?? ""].some((value) =>
+          value.toLocaleLowerCase("tr-TR").includes(normalizedQuery),
+        ),
+      )
+    : patients;
 
   if (authenticated === undefined) {
     return <p className="p-8 text-[#54727d]">Yönetim paneli yükleniyor...</p>;
@@ -296,15 +307,28 @@ export function AdminPanel() {
             </div>
           ))}
         </section>
+        <ClinicCalendar />
 
         {error && <p className="mt-6 rounded-xl bg-red-50 p-4 text-red-700">{error}</p>}
         <section className="mt-8 space-y-6">
-          {patients.length === 0 ? (
+          <label className="block max-w-xl">
+            <span className="sr-only">Hasta ara</span>
+            <input
+              type="search"
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
+              placeholder="Ad soyad, telefon veya e-posta ile hasta ara"
+              className="w-full rounded-2xl border border-[#cbe4ea] bg-white px-5 py-4 text-base outline-none ring-[#0097be] placeholder:text-[#78949d] focus:ring-2"
+            />
+          </label>
+          {filteredPatients.length === 0 ? (
             <p className="rounded-2xl bg-white p-6 text-[#54727d]">
-              Henüz formdan gelen hasta başvurusu bulunmuyor.
+              {patients.length === 0
+                ? "Henüz formdan gelen hasta başvurusu bulunmuyor."
+                : "Aramanızla eşleşen hasta bulunamadı."}
             </p>
           ) : (
-            patients.map((patient) => {
+            filteredPatients.map((patient) => {
               const draft = drafts[patient.id];
 
               return (
@@ -314,7 +338,12 @@ export function AdminPanel() {
                       <p className="text-sm font-semibold text-[#008daf]">
                         {stageLabels[patient.patientStage]}
                       </p>
-                      <h2 className="mt-1 text-2xl font-semibold">{patient.fullName}</h2>
+                      <Link
+                        href={`/yonetim/hastalar/${patient.id}`}
+                        className="mt-1 inline-block text-2xl font-semibold transition hover:text-[#0097be]"
+                      >
+                        {patient.fullName}
+                      </Link>
                       <p className="mt-2 text-[#54727d]">
                         {patient.phone}
                         {patient.email ? ` · ${patient.email}` : ""}
@@ -327,6 +356,12 @@ export function AdminPanel() {
                       </p>
                     </div>
                   </div>
+                  <Link
+                    href={`/yonetim/hastalar/${patient.id}`}
+                    className="mt-4 inline-flex text-sm font-semibold text-[#008daf] hover:underline"
+                  >
+                    Ayrı hasta kaydını aç →
+                  </Link>
 
                   <div className="mt-6 grid gap-4 lg:grid-cols-3">
                     <label className="grid gap-2 text-sm font-medium">

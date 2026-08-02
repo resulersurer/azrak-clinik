@@ -4,6 +4,7 @@ import {
   addCareTask,
   addDailyFollowUp,
   addPatientPayment,
+  getAppointmentRequest,
   type PatientStage,
   updatePatientRecord,
 } from "@/lib/appointments";
@@ -21,6 +22,30 @@ const patientStages: PatientStage[] = [
 
 function isValidId(id: number) {
   return Number.isSafeInteger(id) && id > 0;
+}
+
+export async function GET(
+  _request: Request,
+  context: RouteContext<"/api/admin/appointments/[id]">,
+) {
+  if (!(await hasAdminSession())) {
+    return NextResponse.json({ error: "Yetkisiz istek." }, { status: 401 });
+  }
+
+  const { id: idParam } = await context.params;
+  const id = Number(idParam);
+
+  if (!isValidId(id)) {
+    return NextResponse.json({ error: "Geçersiz hasta kaydı." }, { status: 400 });
+  }
+
+  const patient = await getAppointmentRequest(id);
+
+  if (!patient) {
+    return NextResponse.json({ error: "Hasta kaydı bulunamadı." }, { status: 404 });
+  }
+
+  return NextResponse.json(patient);
 }
 
 export async function PATCH(
