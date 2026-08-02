@@ -81,8 +81,18 @@ export default function Home() {
       <section className="relative isolate bg-[#17332d] px-6 pb-20 pt-6 text-[#f8f7f3] sm:px-10 lg:min-h-[690px] lg:px-16">
         <div className="absolute inset-x-0 bottom-0 h-2/3 bg-[radial-gradient(circle_at_80%_30%,rgba(186,211,191,0.28),transparent_34%),radial-gradient(circle_at_20%_80%,rgba(196,157,93,0.22),transparent_30%)]" />
         <nav className="relative mx-auto flex max-w-6xl items-center justify-between">
-          <a href="#ana-sayfa" className="text-xl font-semibold tracking-tight">
-            AZRAK <span className="font-light">KLİNİK</span>
+          <a
+            href="#ana-sayfa"
+            className="rounded-xl bg-white px-3 py-2 shadow-sm transition hover:opacity-90"
+          >
+            <Image
+              src="/azrak-hair-transplant-logo.jpeg"
+              alt="Azrak Hair Transplant"
+              width={200}
+              height={99}
+              priority
+              className="h-auto w-36 sm:w-44"
+            />
           </a>
           <a
             href="#iletisim"
@@ -275,3 +285,4 @@ export default function Home() {
 }
 import { AppointmentForm } from "@/components/appointment-form";
 import { AvailabilityCalendar } from "@/components/availability-calendar";
+import Image from "next/image";
