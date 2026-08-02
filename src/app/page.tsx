@@ -42,7 +42,7 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
     name: "Azrak Klinik",
-    url: "https://azrak-clinik.vercel.app",
+    url: "https://azrakclinic.com",
     description:
       "İstanbul'da saç ekimi seçenekleri hakkında bilgi ve kişiye özel ön görüşme sunan klinik.",
     address: {

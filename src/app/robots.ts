@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://azrak-clinik.vercel.app/sitemap.xml",
+    sitemap: "https://azrakclinic.com/sitemap.xml",
   };
 }

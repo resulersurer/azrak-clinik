@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://azrak-clinik.vercel.app"),
+  metadataBase: new URL("https://azrakclinic.com"),
   title: {
     default: "Azrak Klinik | İstanbul Saç Ekimi",
     template: "%s | Azrak Klinik",
