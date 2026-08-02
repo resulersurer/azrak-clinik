@@ -226,6 +226,7 @@ export async function getAppointmentRequests(): Promise<AppointmentRequest[]> {
 
   return Promise.all(
     rows.map(async (row) => {
+      const patientId = Number(row.id);
       const [payments, careTasks, followUps] = await Promise.all([
         sql`
           SELECT
@@ -235,7 +236,7 @@ export async function getAppointmentRequests(): Promise<AppointmentRequest[]> {
             method,
             note
           FROM patient_payments
-          WHERE appointment_id = ${row.id}
+          WHERE appointment_id = ${patientId}
           ORDER BY paid_on DESC, id DESC
         `,
         sql`
@@ -246,7 +247,7 @@ export async function getAppointmentRequests(): Promise<AppointmentRequest[]> {
             completed,
             note
           FROM care_tasks
-          WHERE appointment_id = ${row.id}
+          WHERE appointment_id = ${patientId}
           ORDER BY completed ASC, due_date ASC NULLS LAST, id DESC
         `,
         sql`
@@ -256,7 +257,7 @@ export async function getAppointmentRequests(): Promise<AppointmentRequest[]> {
             completed,
             note
           FROM daily_follow_ups
-          WHERE appointment_id = ${row.id}
+          WHERE appointment_id = ${patientId}
           ORDER BY follow_up_date DESC, id DESC
         `,
       ]);
@@ -268,6 +269,7 @@ export async function getAppointmentRequests(): Promise<AppointmentRequest[]> {
 
       return {
         ...row,
+        id: patientId,
         agreedCost,
         totalPaid,
         balance: agreedCost - totalPaid,
