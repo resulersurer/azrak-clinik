@@ -78,8 +78,8 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
       />
 
-      <section className="relative isolate bg-[#17332d] px-6 pb-20 pt-6 text-[#f8f7f3] sm:px-10 lg:min-h-[690px] lg:px-16">
-        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-[radial-gradient(circle_at_80%_30%,rgba(186,211,191,0.28),transparent_34%),radial-gradient(circle_at_20%_80%,rgba(196,157,93,0.22),transparent_30%)]" />
+      <section className="relative isolate bg-[#294b58] px-6 pb-20 pt-6 text-[#f7fcfd] sm:px-10 lg:min-h-[690px] lg:px-16">
+        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-[radial-gradient(circle_at_80%_30%,rgba(0,151,190,0.42),transparent_34%),radial-gradient(circle_at_20%_80%,rgba(137,210,226,0.22),transparent_30%)]" />
         <nav className="relative mx-auto flex max-w-6xl items-center justify-between">
           <a
             href="#ana-sayfa"
@@ -96,7 +96,7 @@ export default function Home() {
           </a>
           <a
             href="#iletisim"
-            className="rounded-full border border-[#d9c69d]/70 px-5 py-2 text-sm font-medium transition hover:bg-[#d9c69d] hover:text-[#17332d]"
+            className="rounded-full border border-[#92d8e9]/70 px-5 py-2 text-sm font-medium transition hover:bg-[#0097be] hover:text-white"
           >
             Ön görüşme planla
           </a>
@@ -106,13 +106,13 @@ export default function Home() {
           className="relative mx-auto grid max-w-6xl gap-12 pb-10 pt-24 lg:grid-cols-[1.1fr_.9fr] lg:items-center lg:pt-36"
         >
           <div>
-            <p className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-[#d9c69d]">
+            <p className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-[#8fdded]">
               İstanbul saç ekimi
             </p>
             <h1 className="max-w-3xl text-5xl font-semibold leading-[1.04] tracking-tight sm:text-6xl">
               Doğal görünüme odaklanan, size özel saç ekimi planı.
             </h1>
-            <p className="mt-7 max-w-xl text-lg leading-8 text-[#e0ebe4]">
+            <p className="mt-7 max-w-xl text-lg leading-8 text-[#d5eef4]">
               Azrak Klinik&apos;te saç dökülmesi, donör alan ve beklentileriniz
               birlikte değerlendirilir. Süreciniz hakkında açık, anlaşılır ve
               gerçekçi bilgi alırsınız.
@@ -120,7 +120,7 @@ export default function Home() {
             <div className="mt-10 flex flex-wrap gap-4">
               <a
                 href="#iletisim"
-                className="rounded-full bg-[#d9c69d] px-6 py-3 font-semibold text-[#17332d] transition hover:bg-[#f0dfb7]"
+                className="rounded-full bg-[#00a3cd] px-6 py-3 font-semibold text-white transition hover:bg-[#18b8dd]"
               >
                 Ücretsiz ön görüşme
               </a>
@@ -133,9 +133,9 @@ export default function Home() {
             </div>
           </div>
           <div className="relative mx-auto w-full max-w-md">
-            <div className="aspect-[4/5] rounded-t-[10rem] rounded-br-[10rem] border border-white/20 bg-[linear-gradient(145deg,#aec5b6,#6d9384_48%,#244a40)] p-5 shadow-2xl">
-              <div className="flex h-full flex-col justify-end rounded-t-[8rem] rounded-br-[8rem] border border-white/20 bg-[#17332d]/20 p-8">
-                <p className="text-sm uppercase tracking-[0.18em] text-[#d9c69d]">
+            <div className="aspect-[4/5] rounded-t-[10rem] rounded-br-[10rem] border border-white/20 bg-[linear-gradient(145deg,#8cdeed,#0097be_48%,#294b58)] p-5 shadow-2xl">
+              <div className="flex h-full flex-col justify-end rounded-t-[8rem] rounded-br-[8rem] border border-white/20 bg-[#294b58]/25 p-8">
+                <p className="text-sm uppercase tracking-[0.18em] text-[#b6edf6]">
                   Kişisel yaklaşım
                 </p>
                 <p className="mt-3 text-2xl font-medium leading-tight">
@@ -149,14 +149,14 @@ export default function Home() {
 
       <section id="yontemler" className="px-6 py-20 sm:px-10 lg:px-16">
         <div className="mx-auto max-w-6xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#a58042]">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#008daf]">
             Saç ekimi seçenekleri
           </p>
           <div className="mt-4 flex max-w-3xl flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
               Doğru yöntem, doğru değerlendirmeyle başlar.
             </h2>
-            <p className="max-w-md leading-7 text-[#49645b]">
+            <p className="max-w-md leading-7 text-[#52727d]">
               Saç ekimi tek bir standartla uygulanmaz. İhtiyacınıza uygun yaklaşım
               klinik değerlendirme sonrası belirlenir.
             </p>
@@ -165,13 +165,13 @@ export default function Home() {
             {services.map((service, index) => (
               <article
                 key={service.name}
-                className="rounded-3xl border border-[#d8ded8] bg-white p-7"
+                className="rounded-3xl border border-[#d3e7ec] bg-white p-7 shadow-sm"
               >
-                <span className="text-sm font-semibold text-[#a58042]">
+                <span className="text-sm font-semibold text-[#008daf]">
                   0{index + 1}
                 </span>
                 <h3 className="mt-8 text-2xl font-semibold">{service.name}</h3>
-                <p className="mt-4 leading-7 text-[#5a6e66]">
+                <p className="mt-4 leading-7 text-[#597681]">
                   {service.description}
                 </p>
               </article>
@@ -180,10 +180,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-[#e8eee9] px-6 py-20 sm:px-10 lg:px-16">
+      <section className="bg-[#eaf8fc] px-6 py-20 sm:px-10 lg:px-16">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[.8fr_1.2fr]">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#a58042]">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#008daf]">
               Süreç nasıl ilerler?
             </p>
             <h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
@@ -199,12 +199,12 @@ export default function Home() {
             ].map(([number, title, description]) => (
               <li
                 key={number}
-                className="grid grid-cols-[3rem_1fr] gap-4 border-b border-[#c8d3cc] pb-5"
+                className="grid grid-cols-[3rem_1fr] gap-4 border-b border-[#cbe4ea] pb-5"
               >
-                <span className="font-semibold text-[#a58042]">{number}</span>
+                <span className="font-semibold text-[#008daf]">{number}</span>
                 <div>
                   <h3 className="text-xl font-semibold">{title}</h3>
-                  <p className="mt-2 leading-7 text-[#50665d]">{description}</p>
+                  <p className="mt-2 leading-7 text-[#56747e]">{description}</p>
                 </div>
               </li>
             ))}
@@ -214,7 +214,7 @@ export default function Home() {
 
       <section className="px-6 py-20 sm:px-10 lg:px-16">
         <div className="mx-auto max-w-4xl">
-          <p className="text-center text-sm font-semibold uppercase tracking-[0.18em] text-[#a58042]">
+          <p className="text-center text-sm font-semibold uppercase tracking-[0.18em] text-[#008daf]">
             Sık sorulan sorular
           </p>
           <h2 className="mt-4 text-center text-4xl font-semibold tracking-tight sm:text-5xl">
@@ -224,12 +224,12 @@ export default function Home() {
             {questions.map((item) => (
               <details
                 key={item.question}
-                className="group rounded-2xl border border-[#d8ded8] bg-white px-6 py-5"
+                className="group rounded-2xl border border-[#d3e7ec] bg-white px-6 py-5"
               >
                 <summary className="cursor-pointer list-none pr-8 text-lg font-semibold marker:hidden">
                   {item.question}
                 </summary>
-                <p className="mt-4 max-w-2xl leading-7 text-[#536860]">
+                <p className="mt-4 max-w-2xl leading-7 text-[#55737d]">
                   {item.answer}
                 </p>
               </details>
@@ -238,16 +238,16 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-[#e8eee9] px-6 py-20 sm:px-10 lg:px-16">
+      <section className="bg-[#eaf8fc] px-6 py-20 sm:px-10 lg:px-16">
         <div className="mx-auto max-w-6xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#a58042]">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#008daf]">
             Görüşme takvimi
           </p>
           <div className="mt-4 flex max-w-3xl flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
               Yaklaşan görüşme saatleri.
             </h2>
-            <p className="max-w-md leading-7 text-[#49645b]">
+            <p className="max-w-md leading-7 text-[#52727d]">
               Takvimde sadece dolu saatler gösterilir. Başvuru sahiplerinin
               kimliği ve iletişim bilgileri gizli tutulur.
             </p>
@@ -256,16 +256,16 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="iletisim" className="bg-[#17332d] px-6 py-20 text-[#f8f7f3] sm:px-10 lg:px-16">
+      <section id="iletisim" className="bg-[#294b58] px-6 py-20 text-[#f7fcfd] sm:px-10 lg:px-16">
         <div className="mx-auto max-w-6xl">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#d9c69d]">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#8fdded]">
               İstanbul
             </p>
             <h2 className="mt-4 max-w-2xl text-4xl font-semibold tracking-tight sm:text-5xl">
               Saç ekimi yolculuğunuz için ilk adımı atın.
             </h2>
-            <p className="mt-5 max-w-xl leading-7 text-[#dce8e1]">
+            <p className="mt-5 max-w-xl leading-7 text-[#d5eef4]">
               Ön görüşmede ihtiyaçlarınız ve süreç hakkındaki sorularınız
               değerlendirilir. Tıbbi uygunluk, uzman değerlendirmesiyle belirlenir.
             </p>
@@ -274,7 +274,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="bg-[#10271f] px-6 py-7 text-sm text-[#b9cabe] sm:px-10 lg:px-16">
+      <footer className="bg-[#203f4b] px-6 py-7 text-sm text-[#c5e6ed] sm:px-10 lg:px-16">
         <div className="mx-auto flex max-w-6xl flex-wrap justify-between gap-3">
           <span>© {new Date().getFullYear()} Azrak Klinik</span>
           <span>İstanbul saç ekimi hakkında bilgilendirici içerik</span>
@@ -283,6 +283,6 @@ export default function Home() {
     </main>
   );
 }
+import Image from "next/image";
 import { AppointmentForm } from "@/components/appointment-form";
 import { AvailabilityCalendar } from "@/components/availability-calendar";
-import Image from "next/image";

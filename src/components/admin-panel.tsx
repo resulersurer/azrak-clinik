@@ -120,17 +120,17 @@ export function AdminPanel() {
   }
 
   if (authenticated === undefined) {
-    return <p className="p-8 text-[#587168]">Yönetim paneli yükleniyor...</p>;
+    return <p className="p-8 text-[#54727d]">Yönetim paneli yükleniyor...</p>;
   }
 
   if (!authenticated) {
     return (
-      <main className="grid min-h-screen place-items-center bg-[#e8eee9] p-6">
+      <main className="grid min-h-screen place-items-center bg-[#eaf8fc] p-6">
         <form
           onSubmit={login}
           className="w-full max-w-md rounded-3xl bg-white p-8 shadow-sm"
         >
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#a58042]">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#008daf]">
             Azrak Klinik
           </p>
           <h1 className="mt-3 text-3xl font-semibold">Yönetim girişi</h1>
@@ -142,11 +142,11 @@ export function AdminPanel() {
               type="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              className="rounded-xl border border-[#cbd7cf] px-4 py-3 text-base outline-none ring-[#a58042] focus:ring-2"
+              className="rounded-xl border border-[#cbe4ea] px-4 py-3 text-base outline-none ring-[#0097be] focus:ring-2"
             />
           </label>
           {error && <p className="mt-4 text-sm text-red-700">{error}</p>}
-          <button className="mt-6 rounded-full bg-[#17332d] px-6 py-3 font-semibold text-white">
+          <button className="mt-6 rounded-full bg-[#0097be] px-6 py-3 font-semibold text-white transition hover:bg-[#00add6]">
             Giriş yap
           </button>
         </form>
@@ -155,30 +155,30 @@ export function AdminPanel() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f8f7f3] px-6 py-10 sm:px-10">
+    <main className="min-h-screen bg-[#f4fafc] px-6 py-10 sm:px-10">
       <div className="mx-auto max-w-6xl">
         <header className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#a58042]">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#008daf]">
               Azrak Klinik
             </p>
             <h1 className="mt-2 text-4xl font-semibold">Randevu yönetimi</h1>
           </div>
           <button
             onClick={logout}
-            className="rounded-full border border-[#b8c8be] px-5 py-2 text-sm font-semibold"
+            className="rounded-full border border-[#b9dce5] px-5 py-2 text-sm font-semibold transition hover:bg-[#e1f5f9]"
           >
             Çıkış yap
           </button>
         </header>
-        <p className="mt-5 max-w-2xl leading-7 text-[#587168]">
+        <p className="mt-5 max-w-2xl leading-7 text-[#54727d]">
           Onaylarken görüşme tarihini ve saatini seçin. Onaylanan saatler ana
           sayfada yalnızca dolu olarak görünür; kişi bilgileri yayınlanmaz.
         </p>
         {error && <p className="mt-5 rounded-xl bg-red-50 p-4 text-red-700">{error}</p>}
         <div className="mt-10 space-y-5">
           {requests.length === 0 ? (
-            <p className="rounded-2xl bg-white p-6 text-[#587168]">
+            <p className="rounded-2xl bg-white p-6 text-[#54727d]">
               Henüz başvuru bulunmuyor.
             </p>
           ) : (
@@ -186,20 +186,20 @@ export function AdminPanel() {
               <article key={request.id} className="rounded-3xl bg-white p-6 shadow-sm">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div>
-                    <p className="text-sm font-semibold text-[#a58042]">
+                    <p className="text-sm font-semibold text-[#008daf]">
                       {statusLabel(request.status)}
                     </p>
                     <h2 className="mt-1 text-2xl font-semibold">{request.fullName}</h2>
-                    <p className="mt-2 text-[#587168]">{request.phone}</p>
-                    {request.email && <p className="text-[#587168]">{request.email}</p>}
+                    <p className="mt-2 text-[#54727d]">{request.phone}</p>
+                    {request.email && <p className="text-[#54727d]">{request.email}</p>}
                   </div>
-                  <p className="text-sm text-[#587168]">
+                  <p className="text-sm text-[#54727d]">
                     Talep: {formatDate(request.preferredDate)}
                     {request.preferredTime ? `, ${request.preferredTime}` : ""}
                   </p>
                 </div>
                 {request.message && (
-                  <p className="mt-5 rounded-2xl bg-[#f5f7f4] p-4 leading-7 text-[#49645b]">
+                  <p className="mt-5 rounded-2xl bg-[#edf8fb] p-4 leading-7 text-[#52727d]">
                     {request.message}
                   </p>
                 )}
@@ -217,24 +217,24 @@ export function AdminPanel() {
                             [request.id]: event.target.value,
                           })
                         }
-                        className="rounded-xl border border-[#cbd7cf] px-4 py-3 text-base"
+                        className="rounded-xl border border-[#cbe4ea] px-4 py-3 text-base"
                       />
                     </label>
                     <button
                       onClick={() => void updateRequest(request.id, "approved")}
-                      className="rounded-full bg-[#17332d] px-5 py-3 font-semibold text-white"
+                      className="rounded-full bg-[#0097be] px-5 py-3 font-semibold text-white transition hover:bg-[#00add6]"
                     >
                       Onayla ve takvime ekle
                     </button>
                     <button
                       onClick={() => void updateRequest(request.id, "rejected")}
-                      className="rounded-full border border-[#cbb9a0] px-5 py-3 font-semibold text-[#765d3f]"
+                      className="rounded-full border border-[#9acbd8] px-5 py-3 font-semibold text-[#28718a] transition hover:bg-[#e1f5f9]"
                     >
                       Reddet
                     </button>
                   </div>
                 ) : (
-                  <p className="mt-6 text-sm font-medium text-[#587168]">
+                  <p className="mt-6 text-sm font-medium text-[#54727d]">
                     {request.status === "approved"
                       ? `Takvim: ${formatDate(request.scheduledAt)}`
                       : "Bu başvuru reddedildi."}

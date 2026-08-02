@@ -32,12 +32,12 @@ export function AvailabilityCalendar() {
   }, []);
 
   if (!loaded) {
-    return <p className="mt-6 text-[#587168]">Takvim yükleniyor...</p>;
+    return <p className="mt-6 text-[#54727d]">Takvim yükleniyor...</p>;
   }
 
   if (slots.length === 0) {
     return (
-      <p className="mt-6 max-w-xl leading-7 text-[#587168]">
+      <p className="mt-6 max-w-xl leading-7 text-[#54727d]">
         Yaklaşan onaylı görüşme bulunmuyor. Tercih ettiğiniz tarih için ön
         görüşme talebi oluşturabilirsiniz.
       </p>
@@ -49,10 +49,10 @@ export function AvailabilityCalendar() {
       {slots.map((slot) => (
         <div
           key={slot.scheduledAt}
-          className="flex items-center justify-between rounded-2xl border border-[#d4dfd7] bg-white px-5 py-4"
+          className="flex items-center justify-between rounded-2xl border border-[#cbe7ed] bg-white px-5 py-4"
         >
           <span className="font-semibold">{formatSlot(slot.scheduledAt)}</span>
-          <span className="rounded-full bg-[#e8eee9] px-3 py-1 text-xs font-semibold text-[#49645b]">
+          <span className="rounded-full bg-[#e1f5f9] px-3 py-1 text-xs font-semibold text-[#28718a]">
             Dolu
           </span>
         </div>
