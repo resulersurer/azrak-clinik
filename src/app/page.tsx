@@ -78,32 +78,11 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
       />
 
-      <section className="relative isolate bg-[#294b58] px-6 pb-20 pt-6 text-[#f7fcfd] sm:px-10 lg:min-h-[690px] lg:px-16">
+      <section className="relative isolate bg-[#294b58] px-6 pb-20 pt-16 text-[#f7fcfd] sm:px-10 lg:min-h-[690px] lg:px-16">
         <div className="absolute inset-x-0 bottom-0 h-2/3 bg-[radial-gradient(circle_at_80%_30%,rgba(0,151,190,0.42),transparent_34%),radial-gradient(circle_at_20%_80%,rgba(137,210,226,0.22),transparent_30%)]" />
-        <nav className="relative mx-auto flex max-w-6xl items-center justify-between">
-          <a
-            href="#ana-sayfa"
-            className="rounded-xl bg-white px-3 py-2 shadow-sm transition hover:opacity-90"
-          >
-            <Image
-              src="/azrak-hair-transplant-logo.jpeg"
-              alt="Azrak Hair Transplant"
-              width={200}
-              height={99}
-              priority
-              className="h-auto w-36 sm:w-44"
-            />
-          </a>
-          <a
-            href="#iletisim"
-            className="rounded-full border border-[#92d8e9]/70 px-5 py-2 text-sm font-medium transition hover:bg-[#0097be] hover:text-white"
-          >
-            Ön görüşme planla
-          </a>
-        </nav>
         <div
           id="ana-sayfa"
-          className="relative mx-auto grid max-w-6xl gap-12 pb-10 pt-24 lg:grid-cols-[1.1fr_.9fr] lg:items-center lg:pt-36"
+          className="relative mx-auto grid max-w-6xl gap-12 pb-10 pt-12 lg:grid-cols-[1.1fr_.9fr] lg:items-center lg:pt-20"
         >
           <div>
             <p className="mb-6 text-sm font-semibold uppercase tracking-[0.2em] text-[#8fdded]">
@@ -283,6 +262,5 @@ export default function Home() {
     </main>
   );
 }
-import Image from "next/image";
 import { AppointmentForm } from "@/components/appointment-form";
 import { AvailabilityCalendar } from "@/components/availability-calendar";
