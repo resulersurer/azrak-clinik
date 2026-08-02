@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { HairStyleSlider } from "@/components/hair-style-slider";
 
 const services = [
   {
@@ -114,25 +115,7 @@ export default function Home() {
             </div>
           </div>
           <div className="relative mx-auto w-full max-w-md">
-            <figure className="relative aspect-[4/5] overflow-hidden rounded-t-[10rem] rounded-br-[10rem] border border-white/20 shadow-2xl">
-              <Image
-                src="/hair-consultation.jpg"
-                alt="Saç değerlendirmesini temsil eden görsel"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 420px"
-                className="object-cover"
-              />
-              <div className="absolute inset-x-0 bottom-0 flex min-h-2/5 flex-col justify-end bg-gradient-to-t from-[#173a48]/95 to-transparent p-8">
-                <p className="text-sm uppercase tracking-[0.18em] text-[#b6edf6]">
-                  Kişisel yaklaşım
-                </p>
-                <p className="mt-3 text-2xl font-medium leading-tight">
-                  Her saç çizgisi, yüz yapısı ve hedef farklıdır.
-                </p>
-              </div>
-              <figcaption className="sr-only">Temsili görsel</figcaption>
-            </figure>
+            <HairStyleSlider />
           </div>
         </div>
       </section>
