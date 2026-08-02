@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { blogPosts } from "@/lib/blog";
 
@@ -42,7 +43,15 @@ export default function BlogPage() {
             Öne çıkan rehber
           </p>
           <article className="mt-5 grid overflow-hidden rounded-3xl border border-[#cbe7ed] bg-[#eaf8fc] lg:grid-cols-[.8fr_1.2fr]">
-            <div className="min-h-56 bg-[linear-gradient(145deg,#8cdeed,#0097be_48%,#294b58)]" />
+            <Image
+              src={featuredPost.image}
+              alt={featuredPost.imageAlt}
+              width={1600}
+              height={1067}
+              className="h-full min-h-56 w-full object-cover"
+              priority
+              sizes="(max-width: 1024px) 100vw, 40vw"
+            />
             <div className="p-8 sm:p-12">
               <div className="flex flex-wrap gap-3 text-sm font-semibold text-[#28718a]">
                 <span>{featuredPost.category}</span>
@@ -75,15 +84,18 @@ export default function BlogPage() {
             </div>
           </div>
           <div className="mt-8 grid gap-5 md:grid-cols-3">
-            {otherPosts.map((post, index) => (
+            {otherPosts.map((post) => (
               <article
                 key={post.slug}
                 className="flex flex-col rounded-3xl border border-[#d3e7ec] bg-white p-7 shadow-sm"
               >
-                <div
-                  className={`h-2 w-16 rounded-full ${
-                    index % 2 === 0 ? "bg-[#0097be]" : "bg-[#79cfe0]"
-                  }`}
+                <Image
+                  src={post.image}
+                  alt={post.imageAlt}
+                  width={1600}
+                  height={1067}
+                  className="aspect-[16/9] w-full rounded-2xl object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
                 <p className="mt-7 text-sm font-semibold text-[#008daf]">
                   {post.category}

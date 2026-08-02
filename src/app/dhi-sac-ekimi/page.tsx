@@ -13,6 +13,8 @@ export default function DhiPage() {
       eyebrow="DHI saç ekimi"
       title="DHI yaklaşımı hakkında bilinçli karar verin."
       introduction="DHI, saç köklerinin yerleştirilmesinde özel kalemlerden yararlanılan bir yaklaşımdır. Size uygun olup olmadığı, saç ve saç derisi analiziyle belirlenir."
+      image="/hair-consultation.jpg"
+      imageAlt="Saç değerlendirmesini temsil eden görsel"
       sections={[
         {
           title: "DHI neyi ifade eder?",

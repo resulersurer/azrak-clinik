@@ -5,6 +5,8 @@ export type BlogPost = {
   category: string;
   publishedAt: string;
   readTime: string;
+  image: string;
+  imageAlt: string;
   sections: Array<{ heading: string; paragraphs: string[] }>;
 };
 
@@ -17,6 +19,8 @@ export const blogPosts: BlogPost[] = [
     category: "Hazırlık",
     publishedAt: "2026-08-02",
     readTime: "6 dk okuma",
+    image: "/clinic-consultation.jpg",
+    imageAlt: "Klinik ortamında yapılan temsili görüşme",
     sections: [
       {
         heading: "İlk değerlendirmede neler ele alınır?",
@@ -49,6 +53,8 @@ export const blogPosts: BlogPost[] = [
     category: "FUE",
     publishedAt: "2026-07-28",
     readTime: "7 dk okuma",
+    image: "/medical-consultation.jpg",
+    imageAlt: "Tıbbi konsültasyonu temsil eden görsel",
     sections: [
       {
         heading: "FUE yaklaşımının temel prensibi",
@@ -80,6 +86,8 @@ export const blogPosts: BlogPost[] = [
     category: "DHI",
     publishedAt: "2026-07-18",
     readTime: "6 dk okuma",
+    image: "/hair-consultation.jpg",
+    imageAlt: "Saç değerlendirmesini temsil eden görsel",
     sections: [
       {
         heading: "DHI neyi ifade eder?",
@@ -111,6 +119,8 @@ export const blogPosts: BlogPost[] = [
     category: "Bakım",
     publishedAt: "2026-07-09",
     readTime: "5 dk okuma",
+    image: "/hair-care.jpg",
+    imageAlt: "Saç bakımını temsil eden görsel",
     sections: [
       {
         heading: "İlk günler neden önemlidir?",

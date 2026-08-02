@@ -13,6 +13,8 @@ export default function AboutPage() {
       eyebrow="Azrak Hair Transplant"
       title="Şeffaf bilgiyle başlayan saç ekimi yolculuğu."
       introduction="Azrak Hair Transplant, İstanbul'da saç ekimi seçenekleri hakkında anlaşılır bilgi paylaşmayı ve kişiye özel değerlendirme yaklaşımını önceliklendirmeyi amaçlar."
+      image="/hair-care.jpg"
+      imageAlt="Saç bakımını temsil eden görsel"
       sections={[
         {
           title: "Açık iletişim",

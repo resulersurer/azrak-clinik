@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogPosts, getBlogPost } from "@/lib/blog";
@@ -83,6 +84,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <p className="mt-7 max-w-3xl text-lg leading-8 text-[#d5eef4]">
               {post.description}
             </p>
+            <figure className="mt-10 overflow-hidden rounded-3xl">
+              <Image
+                src={post.image}
+                alt={post.imageAlt}
+                width={1600}
+                height={1067}
+                className="aspect-[16/8] w-full object-cover"
+                priority
+                sizes="(max-width: 1024px) 100vw, 900px"
+              />
+              <figcaption className="mt-3 text-xs text-[#bce7f0]">Temsili görsel</figcaption>
+            </figure>
           </div>
         </header>
         <div className="mx-auto max-w-3xl px-6 py-16 sm:px-10">

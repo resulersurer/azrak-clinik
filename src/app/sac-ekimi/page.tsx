@@ -13,6 +13,8 @@ export default function HairTransplantPage() {
       eyebrow="İstanbul saç ekimi"
       title="Saç ekimi planı, kişisel değerlendirmeyle başlar."
       introduction="Saç dökülmesi görünümü, donör alanın kapasitesi ve beklentiler birlikte ele alınır. Azrak Hair Transplant, süreci açık bilgi ve gerçekçi planlamayla anlatmayı hedefler."
+      image="/clinic-consultation.jpg"
+      imageAlt="Klinik ortamında yapılan temsili görüşme"
       sections={[
         {
           title: "Kişisel analiz",

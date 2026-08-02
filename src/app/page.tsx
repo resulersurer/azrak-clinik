@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const services = [
   {
     name: "FUE saç ekimi",
@@ -112,8 +114,16 @@ export default function Home() {
             </div>
           </div>
           <div className="relative mx-auto w-full max-w-md">
-            <div className="aspect-[4/5] rounded-t-[10rem] rounded-br-[10rem] border border-white/20 bg-[linear-gradient(145deg,#8cdeed,#0097be_48%,#294b58)] p-5 shadow-2xl">
-              <div className="flex h-full flex-col justify-end rounded-t-[8rem] rounded-br-[8rem] border border-white/20 bg-[#294b58]/25 p-8">
+            <figure className="relative aspect-[4/5] overflow-hidden rounded-t-[10rem] rounded-br-[10rem] border border-white/20 shadow-2xl">
+              <Image
+                src="/hair-consultation.jpg"
+                alt="Saç değerlendirmesini temsil eden görsel"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 420px"
+                className="object-cover"
+              />
+              <div className="absolute inset-x-0 bottom-0 flex min-h-2/5 flex-col justify-end bg-gradient-to-t from-[#173a48]/95 to-transparent p-8">
                 <p className="text-sm uppercase tracking-[0.18em] text-[#b6edf6]">
                   Kişisel yaklaşım
                 </p>
@@ -121,7 +131,8 @@ export default function Home() {
                   Her saç çizgisi, yüz yapısı ve hedef farklıdır.
                 </p>
               </div>
-            </div>
+              <figcaption className="sr-only">Temsili görsel</figcaption>
+            </figure>
           </div>
         </div>
       </section>
@@ -156,6 +167,26 @@ export default function Home() {
               </article>
             ))}
           </div>
+          <figure className="mt-12 overflow-hidden rounded-3xl bg-[#eaf8fc]">
+            <div className="grid lg:grid-cols-[.9fr_1.1fr] lg:items-center">
+              <Image
+                src="/medical-consultation.jpg"
+                alt="Tıbbi konsültasyonu temsil eden görsel"
+                width={1600}
+                height={1067}
+                className="h-full min-h-64 w-full object-cover"
+                sizes="(max-width: 1024px) 100vw, 45vw"
+              />
+              <figcaption className="p-8 text-lg leading-8 text-[#52727d] sm:p-12">
+                <span className="mb-3 block text-sm font-semibold uppercase tracking-[0.18em] text-[#008daf]">
+                  Bilinçli karar
+                </span>
+                Saç ekimi sürecini değerlendirmek için doğru bilgi, kişisel analiz
+                ve uzman görüşü birlikte ele alınmalıdır.
+                <span className="mt-4 block text-xs text-[#67828b]">Temsili görsel</span>
+              </figcaption>
+            </div>
+          </figure>
         </div>
       </section>
 

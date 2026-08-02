@@ -13,6 +13,8 @@ export default function FuePage() {
       eyebrow="FUE saç ekimi"
       title="FUE yaklaşımını kişisel ihtiyaçlarınızla birlikte değerlendirin."
       introduction="FUE, köklerin donör bölgeden tek tek alınarak planlanan alana yerleştirildiği bir yaklaşımdır. Uygunluk ve ayrıntılı planlama, klinik değerlendirme sonrasında belirlenir."
+      image="/medical-consultation.jpg"
+      imageAlt="Tıbbi değerlendirmeyi temsil eden görsel"
       sections={[
         {
           title: "FUE nasıl planlanır?",
