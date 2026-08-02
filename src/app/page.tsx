@@ -228,8 +228,26 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="bg-[#e8eee9] px-6 py-20 sm:px-10 lg:px-16">
+        <div className="mx-auto max-w-6xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#a58042]">
+            Görüşme takvimi
+          </p>
+          <div className="mt-4 flex max-w-3xl flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+            <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+              Yaklaşan görüşme saatleri.
+            </h2>
+            <p className="max-w-md leading-7 text-[#49645b]">
+              Takvimde sadece dolu saatler gösterilir. Başvuru sahiplerinin
+              kimliği ve iletişim bilgileri gizli tutulur.
+            </p>
+          </div>
+          <AvailabilityCalendar />
+        </div>
+      </section>
+
       <section id="iletisim" className="bg-[#17332d] px-6 py-20 text-[#f8f7f3] sm:px-10 lg:px-16">
-        <div className="mx-auto flex max-w-6xl flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mx-auto max-w-6xl">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#d9c69d]">
               İstanbul
@@ -242,12 +260,7 @@ export default function Home() {
               değerlendirilir. Tıbbi uygunluk, uzman değerlendirmesiyle belirlenir.
             </p>
           </div>
-          <a
-            href="#ana-sayfa"
-            className="shrink-0 rounded-full bg-[#d9c69d] px-7 py-4 font-semibold text-[#17332d] transition hover:bg-[#f0dfb7]"
-          >
-            Ön görüşme talep edin
-          </a>
+          <AppointmentForm />
         </div>
       </section>
 
@@ -260,3 +273,5 @@ export default function Home() {
     </main>
   );
 }
+import { AppointmentForm } from "@/components/appointment-form";
+import { AvailabilityCalendar } from "@/components/availability-calendar";

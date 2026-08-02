@@ -30,3 +30,21 @@ For a local production check, run:
 ```bash
 npm run build
 ```
+
+## Randevu Yönetimi
+
+Başvuru formu ana sayfadadır. Başvurular Neon Postgres veritabanına kaydedilir
+ve `/yonetim` adresinden yönetilir. Onaylanan randevular, kişi bilgileri
+paylaşılmadan ana sayfadaki takvimde **dolu** olarak görünür.
+
+Yönetim panelini kullanmadan önce Vercel'de **Production** ve **Preview**
+ortamları için şu değişkenleri ekleyin:
+
+```text
+ADMIN_PASSWORD=<uzun-ve-benzersiz-bir-parola>
+ADMIN_SESSION_SECRET=<en-az-32-karakterlik-rastgele-gizli-deger>
+```
+
+`DATABASE_URL`, Vercel Neon Postgres entegrasyonu tarafından sağlanır. Yerel
+geliştirme için `.env.example` dosyasını `.env.local` olarak kopyalayıp bu iki
+değişkeni ekleyin.
