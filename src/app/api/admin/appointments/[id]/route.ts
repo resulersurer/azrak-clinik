@@ -5,6 +5,8 @@ import {
   addDailyFollowUp,
   addPatientPayment,
   getAppointmentRequest,
+  setCareTaskCompleted,
+  setDailyFollowUpCompleted,
   type PatientStage,
   updatePatientRecord,
 } from "@/lib/appointments";
@@ -134,6 +136,30 @@ export async function PATCH(
     }
 
     await addDailyFollowUp(id, { followUpDate, note });
+    return NextResponse.json({ ok: true });
+  }
+
+  if (body.action === "careTaskStatus") {
+    const taskId = Number(body.taskId);
+    const completed = body.completed;
+
+    if (!isValidId(taskId) || typeof completed !== "boolean") {
+      return NextResponse.json({ error: "Bakım görevi durumu geçersiz." }, { status: 400 });
+    }
+
+    await setCareTaskCompleted(id, taskId, completed);
+    return NextResponse.json({ ok: true });
+  }
+
+  if (body.action === "followUpStatus") {
+    const followUpId = Number(body.followUpId);
+    const completed = body.completed;
+
+    if (!isValidId(followUpId) || typeof completed !== "boolean") {
+      return NextResponse.json({ error: "Günlük takip durumu geçersiz." }, { status: 400 });
+    }
+
+    await setDailyFollowUpCompleted(id, followUpId, completed);
     return NextResponse.json({ ok: true });
   }
 

@@ -413,6 +413,32 @@ export async function addDailyFollowUp(
   `;
 }
 
+export async function setCareTaskCompleted(appointmentId: number, taskId: number, completed: boolean) {
+  await ensureSchema();
+  const sql = database();
+
+  await sql`
+    UPDATE care_tasks
+    SET completed = ${completed}
+    WHERE id = ${taskId} AND appointment_id = ${appointmentId}
+  `;
+}
+
+export async function setDailyFollowUpCompleted(
+  appointmentId: number,
+  followUpId: number,
+  completed: boolean,
+) {
+  await ensureSchema();
+  const sql = database();
+
+  await sql`
+    UPDATE daily_follow_ups
+    SET completed = ${completed}
+    WHERE id = ${followUpId} AND appointment_id = ${appointmentId}
+  `;
+}
+
 export async function getPublicAppointments(): Promise<PublicAppointment[]> {
   await ensureSchema();
   const sql = database();
