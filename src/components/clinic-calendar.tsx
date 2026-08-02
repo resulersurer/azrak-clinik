@@ -45,9 +45,9 @@ function eventHour(event: CalendarEvent) {
 }
 
 const eventColors = {
-  appointment: "bg-[#0097be] text-white",
-  care_task: "bg-[#dff4f8] text-[#28718a]",
-  follow_up: "bg-[#e9eef9] text-[#405b9a]",
+  appointment: "border-[#008daf] bg-[#e2f7fa] text-[#075d72]",
+  care_task: "border-[#85d3e2] bg-[#f0fbfc] text-[#28718a]",
+  follow_up: "border-[#a9b9df] bg-[#f2f4fb] text-[#405b9a]",
 };
 
 export function ClinicCalendar() {
@@ -86,53 +86,82 @@ export function ClinicCalendar() {
       return { ...slots, [key]: [...(slots[key] ?? []), event] };
     }, {});
   }, [events]);
+  const todayKey = dayKey(new Date());
+  const dateRange = new Intl.DateTimeFormat("tr-TR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).formatRange(days[0], days[6]);
 
   return (
-    <section className="mt-8 rounded-3xl bg-white p-5 shadow-sm sm:p-7">
-      <div className="flex flex-wrap items-center justify-between gap-4">
+    <section className="mt-8 overflow-hidden rounded-[2rem] border border-[#dbecef] bg-white shadow-[0_20px_60px_-35px_rgba(21,77,94,0.45)]">
+      <div className="border-b border-[#dbecef] bg-[linear-gradient(120deg,#f7fdfe_0%,#eaf9fb_52%,#f7fbff_100%)] p-5 sm:p-7">
+        <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#008daf]">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#008daf]">
             Operasyon takvimi
           </p>
-          <h2 className="mt-1 text-2xl font-semibold">Haftalık saat planı</h2>
+          <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#173f4d] sm:text-3xl">
+            Haftalık operasyon planı
+          </h2>
+          <p className="mt-2 text-sm font-medium text-[#54727d]">{dateRange}</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex rounded-xl border border-[#cbe4ea] bg-white p-1 shadow-sm">
           <button
             onClick={() => setWeekStart((current) => addDays(current, -7))}
-            className="rounded-xl border border-[#cbe4ea] px-3 py-2 text-sm font-semibold"
+            aria-label="Önceki hafta"
+            className="rounded-lg px-3 py-2 text-sm font-semibold text-[#38606d] transition hover:bg-[#edf8fa]"
           >
-            ← Önceki
+            Onceki
           </button>
           <button
             onClick={() => setWeekStart(startOfWeek(new Date()))}
-            className="rounded-xl bg-[#e1f5f9] px-3 py-2 text-sm font-semibold text-[#28718a]"
+            className="rounded-lg bg-[#008daf] px-3 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#007b98]"
           >
             Bu hafta
           </button>
           <button
             onClick={() => setWeekStart((current) => addDays(current, 7))}
-            className="rounded-xl border border-[#cbe4ea] px-3 py-2 text-sm font-semibold"
+            aria-label="Sonraki hafta"
+            className="rounded-lg px-3 py-2 text-sm font-semibold text-[#38606d] transition hover:bg-[#edf8fa]"
           >
-            Sonraki →
+            Sonraki
           </button>
         </div>
+        </div>
+        <div className="mt-5 flex flex-wrap gap-2 text-xs font-semibold">
+          <span className="rounded-full bg-white px-3 py-1.5 text-[#075d72] shadow-sm">
+            <i className="mr-1.5 inline-block h-2 w-2 rounded-full bg-[#008daf]" />
+            Randevu
+          </span>
+          <span className="rounded-full bg-white px-3 py-1.5 text-[#28718a] shadow-sm">
+            <i className="mr-1.5 inline-block h-2 w-2 rounded-full bg-[#85d3e2]" />
+            Bakım görevi
+          </span>
+          <span className="rounded-full bg-white px-3 py-1.5 text-[#405b9a] shadow-sm">
+            <i className="mr-1.5 inline-block h-2 w-2 rounded-full bg-[#a9b9df]" />
+            Günlük takip
+          </span>
+        </div>
       </div>
-      <div className="mt-4 flex flex-wrap gap-3 text-xs font-medium text-[#54727d]">
-        <span><i className="mr-1 inline-block h-2 w-2 rounded-full bg-[#0097be]" />Randevu</span>
-        <span><i className="mr-1 inline-block h-2 w-2 rounded-full bg-[#a7ddea]" />Bakım görevi</span>
-        <span><i className="mr-1 inline-block h-2 w-2 rounded-full bg-[#a8b8e0]" />Günlük takip</span>
-      </div>
-      {error && <p className="mt-4 text-sm text-red-700">{error}</p>}
-      <div className="mt-6 overflow-x-auto">
-        <div className="min-w-[920px]">
-          <div className="grid grid-cols-[4rem_repeat(7,minmax(9rem,1fr))] border-b border-[#d3e7ec]">
-            <div />
+      {error && <p className="mx-5 mt-5 rounded-xl bg-red-50 p-4 text-sm font-medium text-red-700 sm:mx-7">{error}</p>}
+      <div className="overflow-x-auto">
+        <div className="min-w-[990px]">
+          <div className="grid grid-cols-[4.5rem_repeat(7,minmax(9rem,1fr))] border-b border-[#dbecef]">
+            <div className="bg-[#f8fcfd]" />
             {days.map((day) => (
-              <div key={day.toISOString()} className="border-l border-[#d3e7ec] px-3 pb-3 text-center">
-                <p className="text-xs font-semibold uppercase text-[#008daf]">
+              <div
+                key={day.toISOString()}
+                className={`border-l border-[#dbecef] px-3 py-4 text-center ${
+                  dayKey(day) === todayKey ? "bg-[#effbfd]" : "bg-[#fbfdfe]"
+                }`}
+              >
+                <p className="text-[11px] font-bold uppercase tracking-wide text-[#54727d]">
                   {new Intl.DateTimeFormat("tr-TR", { weekday: "short" }).format(day)}
                 </p>
-                <p className="mt-1 text-lg font-semibold">
+                <p className={`mx-auto mt-2 grid h-9 w-9 place-items-center rounded-full text-sm font-bold ${
+                  dayKey(day) === todayKey ? "bg-[#008daf] text-white shadow-md shadow-[#008daf]/25" : "text-[#173f4d]"
+                }`}>
                   {new Intl.DateTimeFormat("tr-TR", { day: "numeric", month: "short" }).format(day)}
                 </p>
               </div>
@@ -141,24 +170,29 @@ export function ClinicCalendar() {
           {hours.map((hour) => (
             <div
               key={hour}
-              className="grid min-h-22 grid-cols-[4rem_repeat(7,minmax(9rem,1fr))] border-b border-[#e5f0f3]"
+              className="grid min-h-24 grid-cols-[4.5rem_repeat(7,minmax(9rem,1fr))] border-b border-[#e8f1f3]"
             >
-              <div className="pt-3 text-right text-xs font-medium text-[#54727d]">
+              <div className="bg-[#fbfdfe] pt-3 pr-3 text-right text-xs font-bold text-[#6a8790]">
                 {`${String(hour).padStart(2, "0")}:00`}
               </div>
               {days.map((day) => {
                 const slotEvents = eventsBySlot[`${dayKey(day)}-${hour}`] ?? [];
 
                 return (
-                  <div key={`${day.toISOString()}-${hour}`} className="border-l border-[#e5f0f3] p-1.5">
+                  <div
+                    key={`${day.toISOString()}-${hour}`}
+                    className={`group border-l border-[#e8f1f3] p-1.5 transition-colors hover:bg-[#f8fcfd] ${
+                      dayKey(day) === todayKey ? "bg-[#fcfeff]" : ""
+                    }`}
+                  >
                     {slotEvents.map((event) => (
                       <Link
                         key={event.id}
                         href={`/yonetim/hastalar/${event.appointmentId}`}
-                        className={`mb-1 block rounded-lg px-2 py-1.5 text-xs font-semibold ${eventColors[event.kind]}`}
+                        className={`mb-1 block border-l-[3px] rounded-lg px-2.5 py-2 text-xs transition hover:-translate-y-0.5 hover:shadow-md ${eventColors[event.kind]}`}
                       >
-                        <span className="block">{eventTime(event)} · {event.title}</span>
-                        <span className="block truncate opacity-90">{event.patientName}</span>
+                        <span className="block font-bold">{eventTime(event)} · {event.title}</span>
+                        <span className="mt-0.5 block truncate font-medium opacity-80">{event.patientName}</span>
                       </Link>
                     ))}
                   </div>

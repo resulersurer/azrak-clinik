@@ -133,13 +133,14 @@ export function AdminPanel() {
 
   if (!authenticated) {
     return (
-      <main className="grid min-h-screen place-items-center bg-[#eaf8fc] p-6">
-        <form onSubmit={login} className="w-full max-w-md rounded-3xl bg-white p-8 shadow-sm">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#008daf]">
+      <main className="grid min-h-screen place-items-center bg-[radial-gradient(circle_at_top_left,#d7f5f8_0%,#f4fafc_42%,#e8f3f7_100%)] p-6">
+        <form onSubmit={login} className="w-full max-w-md rounded-[2rem] border border-white/80 bg-white/95 p-8 shadow-[0_28px_70px_-35px_rgba(21,77,94,0.55)] backdrop-blur">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#008daf]">
             Azrak Hair Transplant
           </p>
-          <h1 className="mt-3 text-3xl font-semibold">Hasta yönetimi girişi</h1>
-          <label className="mt-8 grid gap-2 text-sm font-medium">
+          <h1 className="mt-3 text-3xl font-bold tracking-tight">Hasta yönetimi</h1>
+          <p className="mt-3 text-sm leading-6 text-[#54727d]">Klinik operasyonlarına güvenli erişim.</p>
+          <label className="mt-8 grid gap-2 text-sm font-bold text-[#355b68]">
             Yönetici parolası
             <input
               required
@@ -151,7 +152,7 @@ export function AdminPanel() {
             />
           </label>
           {error && <p className="mt-4 text-sm text-red-700">{error}</p>}
-          <button className="mt-6 rounded-full bg-[#0097be] px-6 py-3 font-semibold text-white transition hover:bg-[#00add6]">
+          <button className="mt-6 w-full rounded-full bg-[#008daf] px-6 py-3 font-bold text-white shadow-lg shadow-[#008daf]/20 transition hover:bg-[#007b98]">
             Giriş yap
           </button>
         </form>
@@ -160,22 +161,21 @@ export function AdminPanel() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f4fafc] px-5 py-8 sm:px-10">
+    <main className="min-h-screen bg-[radial-gradient(circle_at_top_right,#e2f8fa_0%,#f4fafc_38%,#edf5f8_100%)] px-5 py-8 sm:px-10">
       <div className="mx-auto max-w-7xl">
-        <header className="flex flex-wrap items-start justify-between gap-5">
+        <header className="flex flex-wrap items-start justify-between gap-5 rounded-[2rem] border border-white/80 bg-white/70 p-6 shadow-[0_18px_55px_-38px_rgba(21,77,94,0.5)] backdrop-blur sm:p-8">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#008daf]">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#008daf]">
               Azrak Hair Transplant
             </p>
-            <h1 className="mt-2 text-4xl font-semibold tracking-tight">Hasta yönetimi</h1>
+            <h1 className="mt-2 text-4xl font-bold tracking-tight text-[#173f4d]">Operasyon merkezi</h1>
             <p className="mt-3 max-w-2xl leading-7 text-[#54727d]">
-              Hastayı listeden bulun, detaylar düğmesine tıklayın ve tüm bakım,
-              takip ve finans bilgilerini ayrı kayıtta yönetin.
+              Hastalar, haftalık takvim ve finans durumunu tek merkezden takip edin.
             </p>
           </div>
           <button
             onClick={logout}
-            className="rounded-full border border-[#b9dce5] px-5 py-2 text-sm font-semibold transition hover:bg-[#e1f5f9]"
+            className="rounded-full border border-[#b9dce5] bg-white px-5 py-2 text-sm font-bold text-[#355b68] transition hover:bg-[#e1f5f9]"
           >
             Çıkış yap
           </button>
@@ -191,13 +191,13 @@ export function AdminPanel() {
         <ClinicCalendar />
         {error && <p className="mt-6 rounded-xl bg-red-50 p-4 text-red-700">{error}</p>}
 
-        <section className="mt-8 rounded-3xl bg-white p-5 shadow-sm sm:p-7">
+        <section className="mt-8 rounded-[2rem] border border-[#deedf0] bg-white p-5 shadow-[0_20px_60px_-38px_rgba(21,77,94,0.5)] sm:p-7">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#008daf]">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#008daf]">
                 Hasta listesi
               </p>
-              <h2 className="mt-1 text-2xl font-semibold">Kayıtlar</h2>
+              <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#173f4d]">Kayıtlar</h2>
             </div>
             <label className="w-full max-w-md">
               <span className="sr-only">Hasta ara</span>
@@ -213,7 +213,7 @@ export function AdminPanel() {
 
           <div className="mt-6 overflow-x-auto">
             <table className="min-w-[760px] w-full text-left">
-              <thead className="border-b border-[#d3e7ec] text-xs uppercase tracking-wide text-[#54727d]">
+              <thead className="border-b border-[#d3e7ec] bg-[#f7fcfd] text-xs uppercase tracking-wide text-[#54727d]">
                 <tr>
                   <th className="px-4 py-3">Hasta</th>
                   <th className="px-4 py-3">Aşama</th>
@@ -224,7 +224,7 @@ export function AdminPanel() {
               </thead>
               <tbody>
                 {filteredPatients.map((patient) => (
-                  <tr key={patient.id} className="border-b border-[#edf5f7] last:border-0">
+                  <tr key={patient.id} className="border-b border-[#edf5f7] transition hover:bg-[#f8fcfd] last:border-0">
                     <td className="px-4 py-4">
                       <p className="font-semibold">{patient.fullName}</p>
                       <p className="mt-1 text-sm text-[#54727d]">
@@ -246,7 +246,7 @@ export function AdminPanel() {
                     <td className="px-4 py-4 text-right">
                       <Link
                         href={`/yonetim/hastalar/${patient.id}`}
-                        className="inline-flex rounded-full bg-[#0097be] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#00add6]"
+                        className="inline-flex rounded-full bg-[#008daf] px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-[#007b98]"
                       >
                         Detaylar
                       </Link>
@@ -271,9 +271,9 @@ export function AdminPanel() {
 
 function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-2xl bg-white p-5 shadow-sm">
-      <p className="text-sm font-medium text-[#54727d]">{label}</p>
-      <p className="mt-2 text-2xl font-semibold">{value}</p>
+    <div className="rounded-2xl border border-[#deedf0] bg-white p-5 shadow-[0_14px_35px_-28px_rgba(21,77,94,0.6)]">
+      <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#67848d]">{label}</p>
+      <p className="mt-2 text-2xl font-bold tracking-tight text-[#173f4d]">{value}</p>
     </div>
   );
 }

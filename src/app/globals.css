@@ -17,3 +17,36 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.patient-workflow input:not([type="checkbox"]),
+.patient-workflow select,
+.patient-workflow textarea {
+  width: 100%;
+  border: 1px solid #cbe4ea;
+  border-radius: 0.85rem;
+  background: #fbfeff;
+  padding: 0.75rem 0.875rem;
+  color: #173f4d;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease, background 150ms ease;
+}
+
+.patient-workflow textarea {
+  min-height: 6.5rem;
+  resize: vertical;
+}
+
+.patient-workflow input:not([type="checkbox"]):focus,
+.patient-workflow select:focus,
+.patient-workflow textarea:focus {
+  border-color: #008daf;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgb(0 141 175 / 14%);
+}
+
+.patient-workflow input[type="checkbox"] {
+  margin-top: 0.25rem;
+  height: 1rem;
+  width: 1rem;
+  accent-color: #008daf;
+}

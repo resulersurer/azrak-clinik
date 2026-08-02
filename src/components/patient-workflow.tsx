@@ -86,6 +86,7 @@ export function PatientWorkflow({ initialPatient }: { initialPatient: Appointmen
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [saving, setSaving] = useState(false);
+  const currentStageIndex = stages.indexOf(draft.patientStage);
 
   async function refreshPatient() {
     const response = await fetch(`/api/admin/appointments/${patient.id}`, { cache: "no-store" });
@@ -159,7 +160,32 @@ export function PatientWorkflow({ initialPatient }: { initialPatient: Appointmen
   }
 
   return (
-    <>
+    <div className="patient-workflow pb-10">
+      <section className="mt-6 overflow-hidden rounded-[2rem] border border-[#d6edf1] bg-[linear-gradient(115deg,#143f4d_0%,#1a6475_58%,#0d91a9_100%)] p-6 text-white shadow-[0_20px_55px_-30px_rgba(15,80,97,0.65)] sm:p-8">
+        <div className="flex flex-wrap items-start justify-between gap-5">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#a9e9f3]">Hasta yolculuğu</p>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight">Tedavi ve bakım durumu</h2>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-[#d2f0f4]">
+              Klinik ekibi için plan, takip ve mali durum aynı çalışma alanında.
+            </p>
+          </div>
+          <span className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-bold">
+            {stageLabels[draft.patientStage]}
+          </span>
+        </div>
+        <div className="mt-7 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-8">
+          {stages.map((stage, index) => (
+            <div key={stage} className="relative">
+              <div className={`h-1 rounded-full ${index <= currentStageIndex ? "bg-[#79dfec]" : "bg-white/20"}`} />
+              <p className={`mt-2 text-[10px] font-bold leading-4 ${index === currentStageIndex ? "text-white" : "text-[#b8dde3]"}`}>
+                {stageLabels[stage]}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="mt-6 grid gap-4 sm:grid-cols-3">
         <Metric label="Paket bedeli" value={formatCurrency(patient.agreedCost)} />
         <Metric label="Tahsil edilen" value={formatCurrency(patient.totalPaid)} />
@@ -172,13 +198,13 @@ export function PatientWorkflow({ initialPatient }: { initialPatient: Appointmen
         </p>
       )}
 
-      <form onSubmit={savePatient} className="mt-6 rounded-3xl bg-white p-6 shadow-sm sm:p-8">
+      <form onSubmit={savePatient} className="mt-6 rounded-[2rem] border border-[#deedf0] bg-white p-6 shadow-[0_18px_50px_-34px_rgba(21,77,94,0.45)] sm:p-8">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#008daf]">Tedavi yönetimi</p>
-            <h2 className="mt-1 text-2xl font-semibold">Hasta planı</h2>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#008daf]">Tedavi yönetimi</p>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#173f4d]">Hasta planı</h2>
           </div>
-          <button disabled={saving} className="rounded-full bg-[#0097be] px-5 py-3 font-semibold text-white transition hover:bg-[#00add6] disabled:cursor-not-allowed disabled:opacity-60">
+          <button disabled={saving} className="rounded-full bg-[#008daf] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-[#008daf]/20 transition hover:bg-[#007b98] disabled:cursor-not-allowed disabled:opacity-60">
             Planı kaydet
           </button>
         </div>
@@ -206,7 +232,7 @@ export function PatientWorkflow({ initialPatient }: { initialPatient: Appointmen
         </div>
       </form>
 
-      <section className="mt-6 grid gap-6 xl:grid-cols-3">
+      <section className="mt-6 grid gap-5 xl:grid-cols-3">
         <WorkflowCard title="Tahsilat">
           <p className="text-sm text-[#54727d]">Kalan bakiye: <strong className="text-[#28718a]">{formatCurrency(patient.balance)}</strong></p>
           <form onSubmit={addPayment} className="mt-4 grid gap-3">
@@ -254,24 +280,38 @@ export function PatientWorkflow({ initialPatient }: { initialPatient: Appointmen
           </RecordList>
         </WorkflowCard>
       </section>
-    </>
+    </div>
   );
 }
 
 function Metric({ label, value }: { label: string; value: string }) {
-  return <div className="rounded-2xl bg-white p-5 shadow-sm"><p className="text-sm text-[#54727d]">{label}</p><p className="mt-2 text-xl font-semibold">{value}</p></div>;
+  return (
+    <div className="rounded-2xl border border-[#deedf0] bg-white p-5 shadow-[0_14px_35px_-28px_rgba(21,77,94,0.6)]">
+      <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#67848d]">{label}</p>
+      <p className="mt-2 text-xl font-bold tracking-tight text-[#173f4d]">{value}</p>
+    </div>
+  );
 }
 
 function Field({ label, children }: Readonly<{ label: string; children: React.ReactNode }>) {
-  return <label className="grid gap-2 text-sm font-medium">{label}{children}</label>;
+  return <label className="grid gap-2 text-sm font-bold text-[#355b68]">{label}{children}</label>;
 }
 
 function WorkflowCard({ title, children }: Readonly<{ title: string; children: React.ReactNode }>) {
-  return <section className="rounded-3xl bg-white p-6 shadow-sm"><h2 className="text-xl font-semibold">{title}</h2>{children}</section>;
+  return (
+    <section className="rounded-[1.75rem] border border-[#deedf0] bg-white p-6 shadow-[0_18px_50px_-34px_rgba(21,77,94,0.45)]">
+      <h2 className="text-xl font-bold tracking-tight text-[#173f4d]">{title}</h2>
+      {children}
+    </section>
+  );
 }
 
 function ActionButton({ children, disabled }: Readonly<{ children: React.ReactNode; disabled: boolean }>) {
-  return <button disabled={disabled} className="rounded-xl bg-[#e1f5f9] px-4 py-3 text-sm font-semibold text-[#28718a] transition hover:bg-[#c9edf4] disabled:cursor-not-allowed disabled:opacity-60">{children}</button>;
+  return (
+    <button disabled={disabled} className="rounded-xl bg-[#e1f5f9] px-4 py-3 text-sm font-bold text-[#146d82] transition hover:bg-[#c9edf4] disabled:cursor-not-allowed disabled:opacity-60">
+      {children}
+    </button>
+  );
 }
 
 function RecordList({ children }: Readonly<{ children: React.ReactNode }>) {
